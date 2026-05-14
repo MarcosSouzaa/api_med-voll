@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import jakarta.validation.Valid;
 import med.voll.api.medico.DadosCadastroMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoRepository;
@@ -35,13 +36,15 @@ public class MedicoController {
      */
     @PostMapping
     @Transactional //do springFramework (preciso ter uma transação ativa com DB)
-    public void cadastrar(@RequestBody DadosCadastroMedico dados) {
+    public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
         /* Aqui ele pede para eu passar a entidade médico, mas eu recebo um DTO DadosCadastroMedico
          * então eu tenho que convertê-lo para um objeto do tipo médico, então vou usar um construtor
          * vou estanciar o construtor usando new, e vou receber os dados que vem do DTO
          * O id será gerado pelo banco de dados, por isso ele será nulo.
          * vou usar o parâmetro dados + '.' para coletar os dados
          * OBS: SÓ QUE É MAIS FÁCIL SE EU CRIAR O CONSTRUTOR DENTRO DA CLASSE MÉDICO
+         * No parâmetro DadosCadastroMedico tenho que colocar o Valid para o spring se integrar
+         * com o Bean Validation para V alidar esse DTO
          */
         repository.save(new Medico(dados ));
     }

@@ -33,6 +33,7 @@ public class Medico {
     private Long id;
     private String nome;
     private String email;
+    private String telefone;
     private String crm;
 
     /*Enumerated(EnumType.STRING): Usada para o campo especialidade. Por padrão, o Java salva Enums como números (0, 1, 2).
@@ -52,6 +53,7 @@ public class Medico {
         this.nome = dados.nome();
         this.email = dados.email();
         this.crm = dados.crm();
+        this.telefone = dados.telefone();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereço(dados.endereco());
     }
